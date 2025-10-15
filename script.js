@@ -1,7 +1,7 @@
 
 // Lista de modelos
 const modelos = [
-  {name:"ktm_duke", img:"assets/ktm_duke.png", glb:"glb/ktm_duke.glb", desc:"moto", size:"~53.526 MB", formats:"FBX, OBJ, GLB"},
+  {name:"Carro Gol Quadrado 3D", img:"assets/carro_gol.png", glb:"glb/carro_gol.glb", desc:"Carro brasileiro clássico", size:"~25 MB", formats:"FBX, OBJ, GLB"},
   {name:"Farda PM-SP", img:"assets/farda_pm.png", glb:"glb/farda_pm.glb", desc:"Uniforme policial otimizado", size:"~15 MB", formats:"FBX, OBJ, PNG"},
   {name:"Barraco de Favela", img:"assets/barraco.png", glb:"glb/barraco.glb", desc:"Conjunto modular de favela", size:"~80 MB", formats:"FBX, GLB, OBJ"},
   {name:"Camisa de Time", img:"assets/camisa.png", glb:"glb/camisa.glb", desc:"Textura 4K para roupas", size:"~10 MB", formats:"PNG, PSD, TGA"},
