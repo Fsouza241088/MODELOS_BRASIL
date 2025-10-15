@@ -1,43 +1,45 @@
-
-// Lista de modelos
+// Dados fictícios para os modelos
 const modelos = [
-  {name:"ktm_duke", img:"assets/ktm_duke.png", glb:"glb/ktm_duke.glb", desc:"KTM duke 200", size:"~0", formats:"FBX, OBJ, GLB"},
-  {name:"Farda PM-SP", img:"assets/farda_pm.png", glb:"glb/farda_pm.glb", desc:"Uniforme policial otimizado", size:"~15 MB", formats:"FBX, OBJ, PNG"},
-  {name:"Barraco de Favela", img:"assets/barraco.png", glb:"glb/barraco.glb", desc:"Conjunto modular de favela", size:"~80 MB", formats:"FBX, GLB, OBJ"},
-  {name:"Camisa de Time", img:"assets/camisa.png", glb:"glb/camisa.glb", desc:"Textura 4K para roupas", size:"~10 MB", formats:"PNG, PSD, TGA"},
-  {name:"Kombi Brasileira", img:"assets/kombi.png", glb:"glb/kombi.glb", desc:"Kombi estilizada para jogos", size:"~8 MB", formats:"FBX, OBJ"},
-  {name:"Motocicleta Titan", img:"assets/moto.png", glb:"glb/moto.glb", desc:"Motocicleta brasileira", size:"~20 MB", formats:"FBX, OBJ, GLB"}
+  {
+    nome: "Casa Colonial",
+    descricao: "Modelo low-poly com texturas PBR.",
+    imagem: "casa-colonial.jpg",
+    preco: "R$ 49,90"
+  },
+  {
+    nome: "Barraca de Feira",
+    descricao: "Ideal para cenas urbanas brasileiras.",
+    imagem: "barraca-feira.jpg",
+    preco: "R$ 29,90"
+  },
+  {
+    nome: "Ônibus Urbano",
+    descricao: "Compatível com Unreal e Unity.",
+    imagem: "onibus-urbano.jpg",
+    preco: "R$ 79,90"
+  }
 ];
 
-// Gera os cards automaticamente
-function gerarCatalogo(){
-  const container=document.querySelector(".catalog .grid");
-  modelos.forEach(m=>{
-    const card=document.createElement("article");
-    card.className="card";
-    card.innerHTML=`
-      <div class="thumb"><img src="${m.img}" alt="${m.name}"></div>
-      <h4>${m.name}</h4>
-      <p class="desc">${m.desc}</p>
-      <ul class="meta"><li>Tamanho: ${m.size}</li><li>Formatos: ${m.formats}</li></ul>
-      <div class="actions">
-        <a class="btn" href="mailto:fabricio.souza2088@gmail.com?subject=Compra - ${encodeURIComponent(m.name)}">Comprar</a>
-        <a class="btn ghost" href="#" onclick="previewAsset('${m.glb}');return false;">Visualizar</a>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
+// Gera os cards no catálogo
+const grid = document.querySelector(".grid");
+modelos.forEach(modelo => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <img src="${modelo.imagem}" alt="${modelo.nome}">
+    <h4>${modelo.nome}</h4>
+    <p>${modelo.descricao}</p>
+    <p><strong>${modelo.preco}</strong></p>
+    <a href="mailto:fabricio.souza2088@gmail.com?subject=Compra: ${modelo.nome}" class="buy-button">Comprar</a>
+  `;
+  grid.appendChild(card);
+});
 
-function previewAsset(glbFile){
-  alert("Preview 3D: " + glbFile + "\n(Substitua o placeholder pelo modelo real quando tiver o arquivo .glb)");
+// Função para abrir e-mail com nome e mensagem
+function openMail(event) {
+  event.preventDefault();
+  const nome = document.getElementById("nome").value;
+  const mensagem = document.getElementById("mensagem").value;
+  const mailto = `mailto:fabricio.souza2088@gmail.com?subject=Contato de ${nome}&body=${encodeURIComponent(mensagem)}`;
+  window.location.href = mailto;
 }
-
-function openMail(e){
-  e.preventDefault();
-  const nome=document.getElementById("nome").value;
-  const mensagem=document.getElementById("mensagem").value;
-  window.location.href=`mailto:fabricio.souza2088@gmail.com?subject=Contato - ${encodeURIComponent(nome)}&body=${encodeURIComponent(mensagem)}`;
-}
-
-window.onload=gerarCatalogo;
